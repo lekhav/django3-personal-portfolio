@@ -1,0 +1,34 @@
+
+<!-- using BASE TEMPLATE’s for repeated code's like NAVBAR by, `extend` and `block block_name` followed by `endblock` -->
+{% extends 'portfolio/base_template_navbar.html' %}
+{% block content_for_home %}
+
+
+
+    Hello blog
+    <!-- <a href="">Click here to connect on Social Media</a> -->
+
+
+    <h2>Lekha, You have written {{ blogs.count }} blog{{ blogs.count | pluralize }}. Keep it up!</h2>
+
+    {% for blog in blogs %}
+
+    <!-- ************************************** -->
+    <!-- Mapping the app_name defined in urls.py, 
+        VERY IMPORTANT to specify the appropriate APP and then to search for the ITEM inside the APP 
+        to serve the correct item -->
+    <!-- Wrapping it with a Anchor TAG allows redirecting to their appropriate page  -->
+    <a href="{% url 'blog:detail' blog.id %}"><h2>{{ blog.post_title }}</h2></a>         
+    <h5>{{ blog.post_timestamp|date:'M d Y'|upper }}</h5>        
+
+    <!-- CUSTOMIZING THE DATE differently  -->
+    <!-- `safe` keyword applies any HTML styling done inside the <p> TAG. 
+        Alternatively, `striptags` keyword can remove any HTML styling. 
+        CUSTOMIZING to show only 100 characters  -->
+    <p>{{ blog.post_description|safe|truncatechars:100 }}</p>    
+
+    {% endfor %}
+
+
+
+{% endblock %}

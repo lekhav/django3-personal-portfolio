@@ -1,0 +1,12 @@
+<!-- using BASE TEMPLATE’s for repeated code's like NAVBAR by, `extend` and `block block_name` followed by `endblock` -->
+{% extends 'portfolio/base_template_navbar.html' %}
+{% block content_for_home %}
+
+
+    <h1>{{ blog.post_title }}</h1>
+
+    <h2>--{{ blog.post_timestamp|date:'F jS Y' }}--</h2>         <!-- j-> number, S-> 'th'/'nd' -->
+
+    {{ blog.post_description|safe }}
+
+{% endblock %}
